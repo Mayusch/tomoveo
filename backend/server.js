@@ -38,7 +38,7 @@ const server = http.createServer(app);
 //Create Socket.IO server and configures it with CORS settings.
 const io = new Server(server, {
   cors: {
-    origin: `${process.env.REACT_APP_API_URL}`,
+    origin: `${process.env.REACT_APP_SOCKET_URL}`,
     methods: ["GET", "POST"],
     credentials: true,
   },
