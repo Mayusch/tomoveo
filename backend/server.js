@@ -18,12 +18,12 @@ dotenv.config();
 const app = express();
 const sPORT = process.env.sPORT || 5005;
 const fPORT = process.env.fPORT || 3000;
-
+process.env.REACT_APP_API_URL
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const corsOptions = {
-  origin: `http://localhost:${fPORT}`,
+  origin: `${process.env.REACT_APP_API_URL}`,
   credentials: true,
 };
 
@@ -38,7 +38,7 @@ const server = http.createServer(app);
 //Create Socket.IO server and configures it with CORS settings.
 const io = new Server(server, {
   cors: {
-    origin: `http://localhost:${fPORT}`,
+    origin: `${process.env.REACT_APP_API_URL}`,
     methods: ["GET", "POST"],
     credentials: true,
   },
@@ -63,5 +63,5 @@ if (process.env.NODE_ENV === "production") {
 server.listen(sPORT, async () => {
   await connectMongoDB();
   await seedDatabase();
-  console.log(`Server running on http://localhost:${sPORT}`);
+  console.log(`Server running on ${process.env.REACT_APP_API_URL}`,);
 });
