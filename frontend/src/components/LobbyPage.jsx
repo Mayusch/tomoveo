@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import axios from "../services/api";
-import CodeBlockCard from "./CodeBlockCard";
+import axios from "../services/api.js";
+import CodeBlockCard from "./CodeBlockCard.jsx";
 
 //Component serves as main lobby or entry point where users can browse available CodeBlocks.
 function LobbyPage() {

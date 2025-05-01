@@ -15,12 +15,14 @@ import { seedDatabase } from "./config/seed.js";
 //Loads environment variables using `dotenv`.
 dotenv.config();
 
-const app = express();
+const PORT = process.env.PORT || 5005;
+
+app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const corsOptions = {
-  origin: `${process.env.REACT_APP_API_URL}`,
+  origin: `${process.env.APP_API_URL}`,
   credentials: true,
 };
 
@@ -57,8 +59,8 @@ if (process.env.NODE_ENV === "production") {
 }
 
 //Starts the HTTP server on a specified port, connects to the MongoDB database, and seeds it with default code block exercises on startup.
-server.listen(async () => {
+server.listen(PORT, async () => {
   await connectMongoDB();
   await seedDatabase();
-  console.log(`Server running on ${process.env.REACT_APP_API_URL}`,);
+  console.log(`Server running on ${PORT}, ${process.env.APP_API_URL}`);
 });
