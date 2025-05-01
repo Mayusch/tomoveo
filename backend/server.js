@@ -22,7 +22,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const corsOptions = {
-  origin: `${process.env.APP_API_URL}`,
+  origin: `${process.env.REACT_APP_API_URL}`,
   credentials: true,
 };
 
@@ -62,5 +62,5 @@ if (process.env.NODE_ENV === "production") {
 server.listen(PORT, async () => {
   await connectMongoDB();
   await seedDatabase();
-  console.log(`Server running on ${PORT}, ${process.env.APP_API_URL}`);
+  console.log(`Server running on ${PORT}, ${process.env.REACT_APP_API_URL}`);
 });
